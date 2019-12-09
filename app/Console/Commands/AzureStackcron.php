@@ -182,9 +182,10 @@ class AzureStackcron extends Command
 
                     $resourceinfo = (string) $getresourceinfo_response->getBody()->getContents();
 
+                    
+
                     $checkresource = Resource::where('url',$resource->id)->first();
                     if($checkresource) {
-                        \Log::info(json_decode($checkresource->details));
                         if( json_decode($checkresource->details) != json_decode($resourceinfo) ){
                             //changed resource
                             \Log::info("Created Changed alert");

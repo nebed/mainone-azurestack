@@ -31,7 +31,8 @@
       <div class="card" v-if="resourceActive">
         <div class="card-header"><p class="card-header-title">Resources</p></div>
         <div class="card-content">
-          <div class="table-container">
+          <VirtualMachines :resources="resources.virtualmachines"></VirtualMachines>
+          <!--<div class="table-container">
             <table class="table table-striped is-narrow table-responsive">
               <thead>
                 <th>Resource Name</th>
@@ -48,7 +49,7 @@
               </tbody>
 
             </table>
-          </div>
+          </div>-->
         </div>
       </div>
       <br />
@@ -56,8 +57,7 @@
       <div class="card" v-if="reportActive">
         <div class="card-header"><p class="card-header-title">Usage Report</p></div>
         <div class="card-content">
-          <div class="content">
-          </div>
+          <Report></Report>
         </div>
       </div>
       <br />
@@ -87,11 +87,12 @@
 
 <script>
 
-  import Resource from '../components/Resource.vue';
+  //import Resource from '../components/Resource.vue';
   import Report from '../components/Report.vue';
+  import VirtualMachines from '../components/VirtualMachines.vue';
 
 export default {
-  components : {Resource,Report},
+  components : {VirtualMachines,Report},
   name: 'Singletenant',
   props: [],
   data () {
@@ -126,7 +127,18 @@ export default {
           }).catch((error) => {
             this.errors.resources = "an error has occured";
           });
-    }
+    },
+    groupBy(array, key){
+      // Return the end result
+      return array.reduce((result, currentValue) => {
+        // If an array already present for key, push it to the array. Else create an array and push the object
+        (result[currentValue[key]] = result[currentValue[key]] || []).push(
+          currentValue
+        );
+        // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
+        return result;
+      }, {}); // empty object is the initial value for result object
+    },
   },
 
   created () {

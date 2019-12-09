@@ -41,6 +41,18 @@ Route::prefix('resources')->group(function () {
     });
 });
 
+Route::prefix('meters')->group(function () {
+    Route::group(['middleware' => 'auth:api'], function(){
+        Route::get('get', 'MeterController@index');
+    });
+});
+
+Route::prefix('usage')->group(function () {
+    Route::group(['middleware' => 'auth:api'], function(){
+        Route::get('/get/{tenantid}', 'UsageController@index');
+    });
+});
+
 /* Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

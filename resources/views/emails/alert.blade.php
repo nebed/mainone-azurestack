@@ -13,13 +13,32 @@
 
 @if($alert_type == 'Changed Resource')
 
-| **Old Resource Details** | **New Resource Details** |
-| _{{$old_resource_details}}_ | _{{$resource_details}}_ |
+---
+
+**Old Resource Details**
+
+{{$old_resource_details}}
+
+---
+
+---
+
+**New Resource Details**
+
+{{$resource_details}}
+
+---
+
 
 @else
 
-**Resource Details**
-_{{$resource_details}}_
+---
+
+**New Resource Details**
+
+{{$resource_details}}
+
+---
 
 @endif
  

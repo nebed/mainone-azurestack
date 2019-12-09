@@ -2,38 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Resource;
-use App\VirtualMachine;
+use App\AvailableVirtualMachine;
 use Illuminate\Http\Request;
 
-class ResourceController extends Controller
+class AvailableVirtualMachineController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($tenantid)
+    public function index()
     {
-        
-        $virtualmachines = VirtualMachine::where('tenant_id', $tenantid)->orderBy('updated_at','desc')->get();
-        $resources = ['virtualmachines'=>$virtualmachines];
-        //$resources = Resource::where('tenant_id', $tenantid)->orderBy('updated_at','desc')->get();
-        return response()->json([
-            'status' => 'success',
-            'data' => $resources
-        ], 200);
-    }
-
-
-    public function approve($id)
-    {
-        $resource = Resource::find($id);
-        $resource->compliant = true;
-        $resource->save();
-        return response()->json([
-            'status' => 'success'
-        ], 200);
+        //
     }
 
     /**
@@ -60,10 +41,10 @@ class ResourceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Resource  $resource
+     * @param  \App\AvailableVirtualMachine  $availableVirtualMachine
      * @return \Illuminate\Http\Response
      */
-    public function show(Resource $resource)
+    public function show(AvailableVirtualMachine $availableVirtualMachine)
     {
         //
     }
@@ -71,10 +52,10 @@ class ResourceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Resource  $resource
+     * @param  \App\AvailableVirtualMachine  $availableVirtualMachine
      * @return \Illuminate\Http\Response
      */
-    public function edit(Resource $resource)
+    public function edit(AvailableVirtualMachine $availableVirtualMachine)
     {
         //
     }
@@ -83,10 +64,10 @@ class ResourceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Resource  $resource
+     * @param  \App\AvailableVirtualMachine  $availableVirtualMachine
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Resource $resource)
+    public function update(Request $request, AvailableVirtualMachine $availableVirtualMachine)
     {
         //
     }
@@ -94,10 +75,10 @@ class ResourceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Resource  $resource
+     * @param  \App\AvailableVirtualMachine  $availableVirtualMachine
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Resource $resource)
+    public function destroy(AvailableVirtualMachine $availableVirtualMachine)
     {
         //
     }

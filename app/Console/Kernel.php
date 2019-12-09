@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\AzureStackcron::class
+        Commands\AzureStackcron::class,
+        Commands\GetResources::class
     ];
 
     /**
@@ -24,8 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('azurestack:cron')
-                 ->everyMinute();;
+        //$schedule->command('azurestack:cron')
+                 //->everyMinute();
+        $schedule->command('command:getresources')
+                 ->everyMinute();
     }
 
     /**

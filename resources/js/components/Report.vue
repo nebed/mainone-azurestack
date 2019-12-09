@@ -30,7 +30,7 @@
 
           <div class="columns">
             <div class="column is-full">
-              <button @click="fetchUsage" class="button is-fullwidth is-success" v-if="start_date && end_date">Fetch Data</button>
+              <button @click="fetchUsage" class="button is-fullwidth is-success" :class="{'is-loading':loading}" v-if="start_date && end_date">Fetch Data</button>
               
               <!--VM Size-->
               <br>
@@ -251,6 +251,7 @@ export default {
       start_date: null,
       end_date: null,
       usage_data: null,
+      loading: false,
       meterid: {
         'vmsize': '6DAB500F-A4FD-49C4-956D-229BB9C8C793',
         'basevm': 'FAB6EB84-500B-4A09-A8CA-7358F8BBAEA5',
@@ -277,6 +278,7 @@ export default {
     },
 
     fetchUsage(){
+      this.loading = true;
       this.$http({
             method: 'get',
             url: 'usage/get/'+this.$route.params.tenantid,
@@ -286,6 +288,7 @@ export default {
             }
           }).then((res) => {
             this.usage_data = res.data.data;
+            this.loading = false;
             console.log(this.usage_data);
           }).catch((error) => {
             

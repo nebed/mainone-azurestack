@@ -3274,6 +3274,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('datetime', vue_datetime__W
       start_date: null,
       end_date: null,
       usage_data: null,
+      loading: false,
       meterid: {
         'vmsize': '6DAB500F-A4FD-49C4-956D-229BB9C8C793',
         'basevm': 'FAB6EB84-500B-4A09-A8CA-7358F8BBAEA5',
@@ -3298,6 +3299,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('datetime', vue_datetime__W
     fetchUsage: function fetchUsage() {
       var _this = this;
 
+      this.loading = true;
       this.$http({
         method: 'get',
         url: 'usage/get/' + this.$route.params.tenantid,
@@ -3307,6 +3309,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('datetime', vue_datetime__W
         }
       }).then(function (res) {
         _this.usage_data = res.data.data;
+        _this.loading = false;
         console.log(_this.usage_data);
       })["catch"](function (error) {});
     }
@@ -33148,6 +33151,7 @@ var render = function() {
                 "button",
                 {
                   staticClass: "button is-fullwidth is-success",
+                  class: { "is-loading": _vm.loading },
                   on: { click: _vm.fetchUsage }
                 },
                 [_vm._v("Fetch Data")]

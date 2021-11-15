@@ -205,7 +205,7 @@
                                     {{ (usagedata.usage*rates[usagedata.metername].cost).toFixed(4)}}
                                   </td>
                                   <td data-label="Charge"
-                                      class="">{{ (usagedata.usage*rates[usagedata.metername].rate).toFixed(2)}}</td>
+                                      class="">{{ (usagedata.usage*rates[usagedata.metername].rate).toFixed(4)}}</td>
                                   <td data-label="Billing Period"
                                       class="">{{usagedata.billing_period}}</td>
                                   <!---->
@@ -270,7 +270,7 @@ methods: {
         	element.msft_rate = parent.$props.rates[element.name].cost;
           element.mdxi_rate = parent.$props.rates[element.name].rate;
           element.msft_cost = (element.usage*parent.$props.rates[element.name].cost).toFixed(3);
-          element.mdxi_charge = (element.usage*element.mdxi_rate).toFixed(2);
+          element.mdxi_charge = (element.usage*element.mdxi_rate).toFixed(3);
         });
         this.csvExport(this.csvarray);
         this.breakdownLoading = false;

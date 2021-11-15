@@ -67,11 +67,13 @@
 <script>
 import menu from '../components/TenantMenu';
 import subscription from '../components/Subscription';
+import usagereport from '../components/UsageReport';
 
 export default {
   components: {
     'app-menu': menu,
     'subscription':subscription,
+    'usagereport':usagereport,
   },
   data: function() {
     return {
